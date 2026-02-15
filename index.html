@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<title>Диана — сайт-визитка</title>
+</head>
+
+<body>
+
+<header>
+    <a href="#home" class="logo">Diana</a>
+    <nav>
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#contacts" class="nav-link">Contact</a>
+    </nav>
+</header>
+
+<section class="home" id="home">
+    <div class="home-img">
+        <img src="avatar.jpg" alt="Аватар Дианы">
+    </div>
+
+    <div class="home-content">
+        <h1>Hello, i'm <span>Diana</span></h1>
+        <h3 class="typing-text">
+            I'm interested in <span></span>
+        </h3>
+        <p>
+            I am a 2nd year student of Computer Science
+            at Toraygyrov University in Pavlodar.
+            I am most interested in the gaming industry and design.
+        </p>
+
+        <div class="social-icons">
+            <a href="https://instagram.com/f4talw1nter" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://t.me/f4talw1nter" target="_blank">
+                <i class="fa-brands fa-telegram"></i>
+            </a>
+            <a href="https://discord.com/users/f4talw1nt3r" target="_blank">
+                <i class="fa-brands fa-discord"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="card">
+    <h2>About</h2>
+    <p>
+        My name is Diana, I live in Pavlodar and study
+        at the Toraygyrov University in the field of Computer Science.
+        I study design and try to create visually pleasing projects.
+        I have my favorite hobbies, such as drawing, sports,
+        computer games, and watching anime.
+    </p>
+</section>
+
+<div class="divider">♡︎ ♡︎ ♡︎ ♡︎</div>
+
+<section id="skills" class="card">
+    <h2>Skills</h2>
+    <div class="skills-list">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>Python</span>
+        <span>Working with visual</span>
+        <span>Creative thinking</span>
+    </div>
+</section>
+
+<div class="divider">♡︎ ♡︎ ♡︎ ♡︎</div>
+
+<section id="contacts" class="card">
+    <h2>Contact</h2>
+    <div class="contact-list">
+        <p>
+            Instagram:
+            <a href="https://instagram.com/f4talw1nter" target="_blank">@f4talw1nter</a>
+        </p>
+        <p>
+            Telegram:
+            <a href="https://t.me/f4talw1nter" target="_blank">@f4talw1nter</a>
+        </p>
+        <p>
+            Discord:
+            <a href="https://discord.com/users/f4talw1nt3r" target="_blank">@f4talw1nt3r</a>
+        </p>
+    </div>
+</section>
+
+<script>
+// ===== Плавная прокрутка и подсветка меню =====
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-link");
+const headerHeight = document.querySelector("header").offsetHeight;
+
+// Подсветка меню при скролле
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - headerHeight - 20; // учитываем фиксированный header
+        if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
+    });
+});
+
+// Плавный скролл при клике
+navLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute("href").substring(1);
+        const targetSection = document.getElementById(targetId);
+        const sectionPosition = targetSection.offsetTop - headerHeight;
+
+        window.scrollTo({
+            top: sectionPosition,
+            behavior: "smooth"
+        });
+    });
+});
+
+// ===== Печатающийся текст =====
+const words = ["design", "games"];
+let i = 0, j = 0;
+const typingSpan = document.querySelector(".typing-text span");
+let isDeleting = false;
+
+function typeWriter() {
+    const currentWord = words[i];
+
+    if (isDeleting) {
+        typingSpan.textContent = currentWord.substring(0, j);
+        j--;
+
+        if (j < 0) {
+            isDeleting = false;
+            j = 0;
+            i = (i + 1) % words.length;
+            setTimeout(typeWriter, 500);
+        } else {
+            setTimeout(typeWriter, 100);
+        }
+
+    } else {
+        typingSpan.textContent = currentWord.substring(0, j + 1);
+        j++;
+
+        if (j === currentWord.length) {
+            isDeleting = true;
+            setTimeout(typeWriter, 1500);
+        } else {
+            setTimeout(typeWriter, 200);
+        }
+    }
+}
+
+typeWriter();
+</script>
+
+</body>
+</html>
