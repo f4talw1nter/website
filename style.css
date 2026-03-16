@@ -294,6 +294,13 @@ color: transparent; /* fallback для других браузеров */
     color: #888;
 }
 
+/* ===== Future Projects ===== */
+
+.future-text p {
+    font-size: 1.6rem;
+    color: #666;
+    margin-bottom: 1.2rem;
+}
 
 
 
