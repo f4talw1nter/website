@@ -245,6 +245,27 @@ color: transparent; /* fallback для других браузеров */
     transform: translateY(-10px) scale(1.05); /* подпрыгивание + лёгкое увеличение */
 }
 
+/* ===== Projects ===== */
+
+.project-images {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.project-images img {
+    width: 220px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(209, 107, 165, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-images img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(209, 107, 165, 0.35);
+}
+
 
 
 
